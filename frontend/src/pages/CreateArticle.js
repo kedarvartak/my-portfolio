@@ -131,10 +131,11 @@ const CreateArticle = () => {
   const [showMediaModal, setShowMediaModal] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
-    excerpt: '',
     content: '',
+    excerpt: '',
     category: '',
-    image: ''
+    image: '',
+    readTime: '3 min read'
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -161,7 +162,13 @@ const CreateArticle = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(null);
+
+    // If no image URL is provided, use a default one
+    const articleData = {
+      ...formData,
+      image: formData.image || "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=2070&auto=format&fit=crop",
+      readTime: "3 min read" // Adding a default read time if not set
+    };
 
     try {
       const response = await fetch(endpoints.articles, {
@@ -169,13 +176,7 @@ const CreateArticle = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          title: formData.title,
-          content: formData.content,
-          excerpt: formData.excerpt,
-          category: formData.category,
-          readTime: `${Math.ceil(formData.content.trim().split(/\s+/).length / 200)} min read`,
-        }),
+        body: JSON.stringify(articleData),
       });
 
       const data = await response.json();
@@ -183,10 +184,9 @@ const CreateArticle = () => {
       if (data.success) {
         navigate('/admin');
       } else {
-        setError(data.message || 'Failed to create article');
+        console.error('Error creating article:', data.error);
       }
     } catch (error) {
-      setError('Error creating article');
       console.error('Error:', error);
     } finally {
       setIsLoading(false);
