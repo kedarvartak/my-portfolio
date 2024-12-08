@@ -143,21 +143,33 @@ const Projects = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/articles');
+        const response = await fetch('https://kedarvartak-portfolio.onrender.com/api/articles');
         const data = await response.json();
 
         if (data.success) {
           // Get the latest 2 articles and add type property
           const latestArticles = data.articles
             .slice(0, 2)
-            .map(article => ({ ...article, type: 'article' }));
+            .map(article => ({
+              ...article,
+              type: 'article',
+              // Add date in a readable format
+              date: new Date(article.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              }),
+              // Add link property for the article
+              link: `/article/${article._id}`
+            }));
           setArticles(latestArticles);
         } else {
           setError('Failed to fetch articles');
+          console.error('API Error:', data.error);
         }
       } catch (error) {
         setError('Error fetching articles');
-        console.error('Error:', error);
+        console.error('Fetch Error:', error);
       } finally {
         setIsLoading(false);
       }
@@ -186,9 +198,23 @@ const Projects = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {combinedItems.map((item, index) => (
-            <ProjectCard key={index} item={item} index={index} />
-          ))}
+          {isLoading ? (
+            // Loading state
+            <>
+              <div className="animate-pulse bg-neutral-800/50 h-[400px] rounded-xl"></div>
+              <div className="animate-pulse bg-neutral-800/50 h-[400px] rounded-xl"></div>
+            </>
+          ) : error ? (
+            // Error state
+            <div className="col-span-2 text-center text-red-400">
+              {error}
+            </div>
+          ) : (
+            // Render items
+            combinedItems.map((item, index) => (
+              <ProjectCard key={index} item={item} index={index} />
+            ))
+          )}
         </div>
 
         <motion.div
