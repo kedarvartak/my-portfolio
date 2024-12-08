@@ -1,46 +1,7 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiArrowUpRight } from 'react-icons/fi';
-
-const projects = [
-  {
-    title: "Project Name 1",
-    description: "A modern web application built with React and Node.js. Features include real-time updates, user authentication, and responsive design.",
-    tags: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
-    image: "https://via.placeholder.com/600x400/1a1a1a/666666?text=Project+1",
-    github: "https://github.com/yourusername/project1",
-    live: "https://project1.com",
-    type: "project"
-  },
-  {
-    title: "Understanding React Server Components",
-    excerpt: "An in-depth look at React Server Components and how they revolutionize the way we build React applications.",
-    date: "March 15, 2024",
-    readTime: "5 min read",
-    category: "React",
-    link: "https://yourblog.com/react-server-components",
-    image: "https://via.placeholder.com/600x400/1a1a1a/666666?text=Article+1",
-    type: "article"
-  },
-  {
-    title: "Project Name 2",
-    description: "Full-stack e-commerce platform with advanced filtering, search functionality, and secure payment integration.",
-    tags: ["TypeScript", "Next.js", "PostgreSQL", "Stripe"],
-    image: "https://via.placeholder.com/600x400/1a1a1a/666666?text=Project+2",
-    github: "https://github.com/yourusername/project2",
-    live: "https://project2.com",
-    type: "project"
-  },
-  {
-    title: "Building Scalable APIs with Node.js",
-    excerpt: "Best practices and patterns for building production-ready APIs using Node.js and Express.",
-    date: "March 1, 2024",
-    readTime: "8 min read",
-    category: "Backend",
-    link: "https://yourblog.com/scalable-nodejs-apis",
-    image: "https://via.placeholder.com/600x400/1a1a1a/666666?text=Article+2",
-    type: "article"
-  }
-];
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProjectCard = ({ item, index }) => {
   if (item.type === "project") {
@@ -153,6 +114,61 @@ const ProjectCard = ({ item, index }) => {
 };
 
 const Projects = () => {
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Keep your static projects data
+  const projects = [
+    {
+      title: "FINN - Financial Neural Network",
+      description: "A financial tool that helps user manage their finances and make informed decisions using analytics and data visualisations. The application talks to the user's database and fetches the data to generate insights using Natural Language Processing.",
+      tags: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Python", "NLP", "Gemini"],
+      image: "https://picsum.photos/200/300",
+      github: "https://github.com/kedarvartak/FINN",
+      live: "https://project1.com",
+      type: "project"
+    },
+    {
+      title: "CASSY - Climate Action Support System",
+      description: "A web application that helps users manage their carbon footprint and make informed decisions to reduce their carbon emissions. The application uses the user's location to fetch the nearest carbon emission data and provides recommendations to the user.",
+      tags: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
+      image: "https://picsum.photos/200/300",
+      github: "https://github.com/kedarvartak/CASSY",
+      live: "https://project2.com",
+      type: "project"
+    }
+  ];
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/articles');
+        const data = await response.json();
+
+        if (data.success) {
+          // Get the latest 2 articles and add type property
+          const latestArticles = data.articles
+            .slice(0, 2)
+            .map(article => ({ ...article, type: 'article' }));
+          setArticles(latestArticles);
+        } else {
+          setError('Failed to fetch articles');
+        }
+      } catch (error) {
+        setError('Error fetching articles');
+        console.error('Error:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  // Combine projects and articles
+  const combinedItems = [...projects, ...articles];
+
   return (
     <section className="py-24 bg-transparent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -170,7 +186,7 @@ const Projects = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((item, index) => (
+          {combinedItems.map((item, index) => (
             <ProjectCard key={index} item={item} index={index} />
           ))}
         </div>
@@ -191,13 +207,13 @@ const Projects = () => {
             <span className="text-sm">View More Projects</span>
             <FiExternalLink className="w-4 h-4" />
           </a>
-          <a 
-            href="/articles"
+          <Link 
+            to="/articles"
             className="inline-flex items-center space-x-2 text-white hover:text-neutral-300 transition-colors duration-300"
           >
             <span className="text-sm">View More Articles</span>
             <FiExternalLink className="w-4 h-4" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

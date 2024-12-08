@@ -10,6 +10,8 @@ import Articles from './pages/Articles';
 import ArticlePage from './pages/ArticlePage';
 import AdminPage from './pages/AdminPage';
 import CreateArticle from './pages/CreateArticle';
+import AdminLogin from './pages/AdminLogin';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -34,9 +36,24 @@ function App() {
               </>
             } />
             <Route path="/articles" element={<Articles />} />
-            <Route path="/articles/:slug" element={<ArticlePage />} />
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="/admin/create-article" element={<CreateArticle />} />
+            <Route path="/articles/:id" element={<ArticlePage />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route 
+              path="/admin" 
+              element={
+                <ProtectedRoute>
+                  <AdminPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/admin/create-article" 
+              element={
+                <ProtectedRoute>
+                  <CreateArticle />
+                </ProtectedRoute>
+              } 
+            />
           </Routes>
         </div>
       </div>

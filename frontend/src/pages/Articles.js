@@ -1,33 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowUpRight, FiSearch } from 'react-icons/fi';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-
-const articles = [
-  {
-    title: "Understanding React Server Components",
-    excerpt: "An in-depth look at React Server Components and how they revolutionize the way we build React applications. Learn about the benefits, trade-offs, and implementation details.",
-    date: "March 15, 2024",
-    readTime: "5 min read",
-    category: "React",
-    link: "https://yourblog.com/react-server-components",
-    image: "https://placehold.co/800x400/1a1a1a/666666?text=React+Server+Components"
-  },
-  {
-    title: "Building Scalable APIs with Node.js",
-    excerpt: "Best practices and patterns for building production-ready APIs using Node.js and Express. Covering authentication, caching, rate limiting, and more.",
-    date: "March 1, 2024",
-    readTime: "8 min read",
-    category: "Backend",
-    link: "https://yourblog.com/scalable-nodejs-apis",
-    image: "https://placehold.co/800x400/1a1a1a/666666?text=Scalable+APIs"
-  },
-  // Add more articles...
-];
-
-const categories = ["All", "React", "Backend", "DevOps", "Architecture", "TypeScript"];
+import { endpoints } from '../config/api';
 
 const ArticleCard = ({ article, index }) => (
   <motion.article
@@ -38,7 +15,7 @@ const ArticleCard = ({ article, index }) => (
   >
     <div className="relative aspect-[16/9] overflow-hidden">
       <img 
-        src={article.image} 
+        src={article.image || "https://placehold.co/800x400/1a1a1a/666666?text=Article+Image"} 
         alt={article.title}
         className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
       />
@@ -51,7 +28,7 @@ const ArticleCard = ({ article, index }) => (
           {article.category}
         </span>
         <div className="flex items-center space-x-2 text-xs text-neutral-400">
-          <span>{article.date}</span>
+          <span>{new Date(article.createdAt).toLocaleDateString()}</span>
           <span>•</span>
           <span>{article.readTime}</span>
         </div>
@@ -66,7 +43,7 @@ const ArticleCard = ({ article, index }) => (
       </p>
 
       <Link 
-        to={`/articles/${article.slug}`}
+        to={`/articles/${article._id}`}
         className="inline-flex items-center text-white text-sm hover:text-neutral-300 transition-colors duration-300"
       >
         Read Article 
@@ -77,8 +54,36 @@ const ArticleCard = ({ article, index }) => (
 );
 
 const Articles = () => {
+  const [articles, setArticles] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [categories, setCategories] = useState(["All"]);
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
+  const fetchArticles = async () => {
+    try {
+      const response = await fetch(endpoints.articles);
+      const data = await response.json();
+
+      if (data.success) {
+        setArticles(data.articles);
+        const uniqueCategories = ["All", ...new Set(data.articles.map(article => article.category))];
+        setCategories(uniqueCategories);
+      } else {
+        setError('Failed to fetch articles');
+      }
+    } catch (error) {
+      setError('Error fetching articles');
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const filteredArticles = articles.filter(article => {
     const matchesCategory = selectedCategory === "All" || article.category === selectedCategory;
@@ -149,22 +154,35 @@ const Articles = () => {
             </motion.div>
           </div>
 
-          {/* Articles Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {filteredArticles.map((article, index) => (
-              <ArticleCard key={index} article={article} index={index} />
-            ))}
-          </div>
+          {/* Loading State */}
+          {isLoading ? (
+            <div className="flex justify-center py-20">
+              <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+            </div>
+          ) : error ? (
+            <div className="text-center py-20">
+              <p className="text-red-400">{error}</p>
+            </div>
+          ) : (
+            <>
+              {/* Articles Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {filteredArticles.map((article, index) => (
+                  <ArticleCard key={article._id} article={article} index={index} />
+                ))}
+              </div>
 
-          {/* No Results */}
-          {filteredArticles.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-20"
-            >
-              <p className="text-neutral-400">No articles found matching your criteria.</p>
-            </motion.div>
+              {/* No Results */}
+              {filteredArticles.length === 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-20"
+                >
+                  <p className="text-neutral-400">No articles found matching your criteria.</p>
+                </motion.div>
+              )}
+            </>
           )}
         </div>
       </main>
@@ -174,4 +192,4 @@ const Articles = () => {
   );
 };
 
-export default Articles; 
+export default Articles;

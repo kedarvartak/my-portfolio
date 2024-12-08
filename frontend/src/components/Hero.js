@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
+import Image from '../Images/IMG_9329.jpg'
 
 const Hero = () => {
   return (
@@ -96,7 +97,7 @@ const Hero = () => {
             >
               <motion.a
                 whileHover={{ x: 4 }}
-                href="#work"
+                href="https://drive.google.com/file/d/1FLvdoXRFCFI3tZ9rrRqt91OltdThB6e_/view?usp=sharing"
                 className="group flex items-center text-white text-lg"
               >
                 View Work
@@ -109,7 +110,7 @@ const Hero = () => {
               <span className="w-px h-4 bg-neutral-800" />
               <motion.a
                 whileHover={{ x: 4 }}
-                href="#contact"
+                href="mailto:kedar.vartak22@vit.edu?subject=Project%20Inquiry&body=Hi%20Kedar,%0D%0A%0D%0AI'd%20like%20to%20discuss%20a%20project%20with%20you."
                 className="group flex items-center text-white text-lg"
               >
                 Contact
@@ -149,7 +150,7 @@ const Hero = () => {
                 className="relative w-full h-full rounded-2xl overflow-hidden border border-neutral-800"
               >
                 <img
-                  src="https://placehold.co/800x800/1a1a1a/666666?text=Your+Image"
+                  src={Image}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />

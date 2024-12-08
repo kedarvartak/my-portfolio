@@ -3,31 +3,31 @@ import { motion } from 'framer-motion';
 const timelineData = {
   academic: [
     {
-      year: "2023",
-      title: "Master's in Computer Science",
-      institution: "University Name",
-      description: "Specialized in Artificial Intelligence and Machine Learning"
+      year: "2022-2026",
+      title: "B.TECH in Artificial Intelligence and Data Science",
+      institution: "Vishwakarma Institute of Technology, Pune",
+      description: "Relevant Courses: Data Structures and Algorithms, Database Management Systems, Artificial Intelligence, Machine Learning, Natural Language Processing, and more."
     },
     {
-      year: "2021",
-      title: "Bachelor's in Software Engineering",
-      institution: "University Name",
-      description: "Focus on Full-Stack Development and System Architecture"
+      year: "2020-2022",
+      title: "12th - HSC",
+      institution: "Namo Rims Junior College, Pune",
+      description: "Focus on Mathematics, Physics, and Chemistry"
     },
     // Add more academic milestones
   ],
   professional: [
     {
-      year: "2023",
-      title: "Senior Software Engineer",
-      company: "Tech Company",
-      description: "Leading frontend development team and architecting scalable solutions"
+      year: "2024",
+      title: "AI and Marketing Intern",
+      company: "Chitale Bandhu IT Sector",
+      description: "Vehicle routing problem and AI-based marketing strategies"
     },
     {
-      year: "2021",
-      title: "Software Developer",
-      company: "Startup Name",
-      description: "Full-stack development using React, Node.js, and AWS"
+      year: "2024",
+      title: "Web Developer Intern",
+      company: "Sangam India",
+      description: "Full-stack development using React, Tailwind CSS, Node.js, BootstrapCSS"
     },
     // Add more professional milestones
   ]

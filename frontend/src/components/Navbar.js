@@ -105,7 +105,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
               className="text-white text-2xl tracking-wider font-light"
             >
-              YourName
+              Kedar Vartak
               <span className="text-neutral-500">.</span>
             </motion.a>
 

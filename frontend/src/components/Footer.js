@@ -49,7 +49,7 @@ const Footer = () => {
                 href="mailto:your.email@example.com"
                 className="inline-flex items-center text-white hover:text-neutral-300 transition-colors duration-300"
               >
-                <span className="text-lg">your.email@example.com</span>
+                <span className="text-lg">kedar.vartak22@vit.edu</span>
                 <FiArrowUpRight className="ml-2 w-5 h-5" />
               </a>
             </motion.div>
@@ -67,10 +67,9 @@ const Footer = () => {
               <div className="text-neutral-400 uppercase text-sm tracking-wider">Social</div>
               <div className="flex space-x-6 md:justify-end">
                 {[
-                  { icon: FiGithub, link: "https://github.com/yourusername" },
-                  { icon: FiTwitter, link: "https://twitter.com/yourusername" },
-                  { icon: FiLinkedin, link: "https://linkedin.com/in/yourusername" },
-                  { icon: FiMail, link: "mailto:your.email@example.com" },
+                  { icon: FiGithub, link: "https://github.com/kedarvartak" },
+                  { icon: FiLinkedin, link: "https://linkedin.com/in/kedarvartak" },
+                  { icon: FiMail, link: "mailto:kedar.vartak22@vit.edu" },
                 ].map((social, index) => (
                   <motion.a
                     key={index}

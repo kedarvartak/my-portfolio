@@ -6,6 +6,7 @@ import AdminNavbar from '../components/AdminNavbar';
 import Footer from '../components/Footer';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { endpoints } from '../config/api';
 
 const Toolbar = ({ onInsert, onMediaClick }) => {
   const tools = [
@@ -135,6 +136,8 @@ const CreateArticle = () => {
     category: '',
     image: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleInsertFormat = (format) => {
     const textarea = document.querySelector('textarea');
@@ -155,11 +158,39 @@ const CreateArticle = () => {
     }, 0);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle article creation logic here
-    console.log('Article data:', formData);
-    navigate('/admin');
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(endpoints.articles, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: formData.title,
+          content: formData.content,
+          excerpt: formData.excerpt,
+          category: formData.category,
+          readTime: `${Math.ceil(formData.content.trim().split(/\s+/).length / 200)} min read`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        navigate('/admin');
+      } else {
+        setError(data.message || 'Failed to create article');
+      }
+    } catch (error) {
+      setError('Error creating article');
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -173,39 +204,39 @@ const CreateArticle = () => {
             animate={{ opacity: 1, y: 0 }}
             className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-6"
           >
-            {/* Header */}
-            <div className="flex justify-between items-center mb-8">
-              <h1 className="text-2xl text-white font-light">Create New Article</h1>
-              <div className="flex space-x-4">
-                <button
-                  type="button"
-                  onClick={() => setIsPreview(!isPreview)}
-                  className="flex items-center space-x-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors duration-300"
-                >
-                  {isPreview ? <FiEyeOff /> : <FiEye />}
-                  <span>{isPreview ? 'Edit' : 'Preview'}</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => navigate('/admin')}
-                  className="flex items-center space-x-2 px-4 py-2 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-500 transition-colors duration-300"
-                >
-                  <FiX />
-                  <span>Cancel</span>
-                </button>
-                <button
-                  type="submit"
-                  className="flex items-center space-x-2 px-4 py-2 rounded-full bg-green-500/10 hover:bg-green-500/20 text-green-500 transition-colors duration-300"
-                >
-                  <FiSave />
-                  <span>Save Article</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Basic Info */}
+              {/* Header */}
+              <div className="flex justify-between items-center mb-8">
+                <h1 className="text-2xl text-white font-light">Create New Article</h1>
+                <div className="flex space-x-4">
+                  <button
+                    type="button"
+                    onClick={() => setIsPreview(!isPreview)}
+                    className="flex items-center space-x-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors duration-300"
+                  >
+                    {isPreview ? <FiEyeOff /> : <FiEye />}
+                    <span>{isPreview ? 'Edit' : 'Preview'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => navigate('/admin')}
+                    className="flex items-center space-x-2 px-4 py-2 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-500 transition-colors duration-300"
+                  >
+                    <FiX />
+                    <span>Cancel</span>
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="flex items-center space-x-2 px-4 py-2 rounded-full bg-green-500/10 hover:bg-green-500/20 text-green-500 transition-colors duration-300"
+                  >
+                    <FiSave />
+                    <span>{isLoading ? 'Saving...' : 'Save Article'}</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Form */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-white/60 mb-2">Title</label>
@@ -225,6 +256,16 @@ const CreateArticle = () => {
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/20"
                     placeholder="Article category..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-white/60 mb-2">Image URL</label>
+                  <input
+                    type="text"
+                    value={formData.image}
+                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/20"
+                    placeholder="Enter image URL..."
                   />
                 </div>
               </div>

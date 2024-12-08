@@ -128,11 +128,11 @@ const Skills = () => {
             "GraphQL", 
             "UI/UX Design", 
             "Agile", 
-            "CI/CD", 
-            "Testing", 
-            "System Design",
+            "Bootstrap CSS", 
+            "Hosting", 
+            "Software Engineering",
             "WebSockets",
-            "OAuth",
+            "Tailwind CSS",
             "JWT",
             "Microservices"
           ].map((skill, index) => (
