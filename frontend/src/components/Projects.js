@@ -124,17 +124,17 @@ const Projects = () => {
       title: "FINN - Financial Neural Network",
       description: "A financial tool that helps user manage their finances and make informed decisions using analytics and data visualisations. The application talks to the user's database and fetches the data to generate insights using Natural Language Processing.",
       tags: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Python", "NLP", "Gemini"],
-      image: "https://picsum.photos/200/300",
-      github: "https://github.com/kedarvartak/FINN",
+      image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=2070&auto=format&fit=crop",
+      github: "https://github.com/kedarvartak/nlp2SQL",
       live: "https://project1.com",
       type: "project"
     },
     {
       title: "CASSY - Climate Action Support System",
       description: "A web application that helps users manage their carbon footprint and make informed decisions to reduce their carbon emissions. The application uses the user's location to fetch the nearest carbon emission data and provides recommendations to the user.",
-      tags: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
-      image: "https://picsum.photos/200/300",
-      github: "https://github.com/kedarvartak/CASSY",
+      tags: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Stripe"],
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+      github: "https://github.com/kedarvartak/Project-Cassy",
       live: "https://project2.com",
       type: "project"
     }
@@ -199,7 +199,7 @@ const Projects = () => {
           className="flex justify-center space-x-8 mt-16"
         >
           <a 
-            href="https://github.com/yourusername"
+            href="https://github.com/kedarvartak"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 text-white hover:text-neutral-300 transition-colors duration-300"

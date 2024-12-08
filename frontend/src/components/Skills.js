@@ -1,45 +1,58 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  SiReact, SiJavascript, SiTypescript, SiPython, 
-  SiNodedotjs, SiTailwindcss, SiGit, SiDocker,
-  SiMongodb, SiPostgresql, SiLinux,
-  SiNextdotjs, SiVuedotjs, SiAngular, SiExpress,
-  SiDjango, SiFlask, SiMysql, SiRedis,
-  SiKubernetes, SiJenkins, SiTerraform, 
+  SiCplusplus, SiPython, SiJavascript, SiTypescript, SiHtml5,
+  SiCss3, SiTailwindcss, SiBootstrap, SiMysql, SiPostgresql,
+  SiMongodb, SiReact, SiDocker, SiGit,
+  SiGithub, SiNodedotjs, SiGo, SiSvelte, SiFastapi, SiRedis,
+  SiShadcnui, SiNextdotjs, SiVite, SiVercel, SiPostman, SiLinux,
+  SiJupyter, SiSupabase, SiFirebase, SiTensorflow,
+  SiScikitlearn, SiNginx, SiFigma, SiFramer
 } from 'react-icons/si';
 
 const skillRows = [
-  // Frontend
+  // Frontend & UI/UX
   [
-    { icon: SiReact, name: "React" },
-    { icon: SiNextdotjs, name: "Next.js" },
-    { icon: SiVuedotjs, name: "Vue.js" },
-    { icon: SiAngular, name: "Angular" },
+    { icon: SiHtml5, name: "HTML5" },
+    { icon: SiCss3, name: "CSS" },
     { icon: SiJavascript, name: "JavaScript" },
     { icon: SiTypescript, name: "TypeScript" },
+    { icon: SiReact, name: "React" },
+    { icon: SiNextdotjs, name: "Next.js" },
+    { icon: SiSvelte, name: "SvelteKit" },
     { icon: SiTailwindcss, name: "Tailwind" },
+    { icon: SiBootstrap, name: "Bootstrap" },
+    { icon: SiShadcnui, name: "Shadcn/ui" },
+    { icon: SiFigma, name: "Figma" },
+    { icon: SiFramer, name: "Framer" },
   ],
-  // Backend
+  // Backend & Languages
   [
-    { icon: SiNodedotjs, name: "Node.js" },
-    { icon: SiExpress, name: "Express" },
+    { icon: SiCplusplus, name: "C++" },
     { icon: SiPython, name: "Python" },
-    { icon: SiDjango, name: "Django" },
-    { icon: SiFlask, name: "Flask" },
-    { icon: SiMongodb, name: "MongoDB" },
-    { icon: SiPostgresql, name: "PostgreSQL" },
-    { icon: SiMysql, name: "MySQL" },
-    { icon: SiRedis, name: "Redis" },
-  ],
-  // DevOps
-  [
-    { icon: SiGit, name: "Git" },
-    { icon: SiDocker, name: "Docker" },
-    { icon: SiKubernetes, name: "Kubernetes" },
-    { icon: SiJenkins, name: "Jenkins" },
-    { icon: SiTerraform, name: "Terraform" },
+    { icon: SiGo, name: "Go" },
+    { icon: SiNodedotjs, name: "Node.js" },
+    { icon: SiFastapi, name: "FastAPI" },
+    { icon: SiNginx, name: "Nginx" },
+    { icon: SiPostman, name: "Postman" },
     { icon: SiLinux, name: "Linux" },
+    { icon: SiVite, name: "Vite" },
+    { icon: SiVercel, name: "Vercel" },
+  ],
+  // Databases, DevOps & Tools
+  [
+    { icon: SiMysql, name: "MySQL" },
+    { icon: SiPostgresql, name: "PostgreSQL" },
+    { icon: SiMongodb, name: "MongoDB" },
+    { icon: SiRedis, name: "Redis" },
+    { icon: SiSupabase, name: "Supabase" },
+    { icon: SiFirebase, name: "Firebase" },
+    { icon: SiDocker, name: "Docker" },
+    { icon: SiGit, name: "Git" },
+    { icon: SiGithub, name: "GitHub" },
+    { icon: SiJupyter, name: "Jupyter" },
+    { icon: SiTensorflow, name: "TensorFlow" },
+    { icon: SiScikitlearn, name: "Scikit-learn" },
   ],
 ];
 
@@ -124,17 +137,43 @@ const Skills = () => {
       >
         <div className="flex flex-wrap justify-center gap-3">
           {[
+            // APIs & Architecture
             "REST APIs", 
-            "GraphQL", 
-            "UI/UX Design", 
-            "Agile", 
-            "Bootstrap CSS", 
-            "Hosting", 
-            "Software Engineering",
+            "GraphQL",
             "WebSockets",
-            "Tailwind CSS",
+            "Microservices",
+            "System Design",
             "JWT",
-            "Microservices"
+            "OAuth",
+            
+            // Development Practices
+            "Agile",
+            "CI/CD",
+            "Test-Driven Development",
+            "Clean Code",
+            "Design Patterns",
+            
+            // Core CS Subjects
+            "Data Structures",
+            "Algorithms",
+            "Operating Systems",
+            "Computer Networks",
+            "Database Management",
+            "OOP",
+            
+            // Software Engineering
+            "Software Engineering",
+            "Software Architecture",
+            "Cloud Computing",
+            "DevOps",
+            "Version Control",
+            
+            // Web Development
+            "UI/UX Design",
+            "Web Security",
+            "SEO",
+            
+          
           ].map((skill, index) => (
             <motion.span
               key={skill}

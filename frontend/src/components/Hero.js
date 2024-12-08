@@ -5,7 +5,7 @@ import Image from '../Images/IMG_9329.jpg'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
+    <section className="relative min-h-screen pt-28 sm:pt-32 flex items-center justify-center bg-black overflow-hidden">
       {/* Animated lines background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:6rem_4rem]" />
@@ -45,7 +45,7 @@ const Hero = () => {
       <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left Column - Text Content */}
-          <div className="flex flex-col space-y-16">
+          <div className="flex flex-col space-y-16 text-center lg:text-left">
             {/* Status */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ const Hero = () => {
               <motion.div
                 animate={{ y: [0, -4, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="flex items-center space-x-2 text-neutral-500"
+                className="flex items-center space-x-2 text-neutral-500 justify-center lg:justify-start"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neutral-400 opacity-75"></span>
@@ -81,7 +81,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="max-w-2xl text-neutral-400 text-lg font-light tracking-wide"
+                className="max-w-2xl text-neutral-400 text-lg font-light tracking-wide mx-auto lg:mx-0"
               >
                 Full-stack developer specializing in crafting elegant solutions 
                 through clean, efficient, and scalable code.
@@ -93,12 +93,12 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center space-x-8"
+              className="flex flex-row items-center space-x-8 justify-center lg:justify-start"
             >
               <motion.a
                 whileHover={{ x: 4 }}
                 href="https://drive.google.com/file/d/1FLvdoXRFCFI3tZ9rrRqt91OltdThB6e_/view?usp=sharing"
-                className="group flex items-center text-white text-lg"
+                className="group flex items-center text-white text-lg justify-center"
               >
                 View Work
                 <motion.span
@@ -111,7 +111,7 @@ const Hero = () => {
               <motion.a
                 whileHover={{ x: 4 }}
                 href="mailto:kedar.vartak22@vit.edu?subject=Project%20Inquiry&body=Hi%20Kedar,%0D%0A%0D%0AI'd%20like%20to%20discuss%20a%20project%20with%20you."
-                className="group flex items-center text-white text-lg"
+                className="group flex items-center text-white text-lg justify-center"
               >
                 Contact
                 <motion.span

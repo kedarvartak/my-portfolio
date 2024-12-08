@@ -46,7 +46,7 @@ const Footer = () => {
               viewport={{ once: true }}
             >
               <a 
-                href="mailto:your.email@example.com"
+                href="mailto:kedar.vartak22@vit.edu"
                 className="inline-flex items-center text-white hover:text-neutral-300 transition-colors duration-300"
               >
                 <span className="text-lg">kedar.vartak22@vit.edu</span>
@@ -68,7 +68,7 @@ const Footer = () => {
               <div className="flex space-x-6 md:justify-end">
                 {[
                   { icon: FiGithub, link: "https://github.com/kedarvartak" },
-                  { icon: FiLinkedin, link: "https://linkedin.com/in/kedarvartak" },
+                  { icon: FiLinkedin, link: "https://www.linkedin.com/in/kedar-vartak20/" },
                   { icon: FiMail, link: "mailto:kedar.vartak22@vit.edu" },
                 ].map((social, index) => (
                   <motion.a
@@ -95,13 +95,19 @@ const Footer = () => {
             >
               <div className="text-neutral-400 uppercase text-sm tracking-wider">Quick Links</div>
               <div className="space-y-3">
-                {['About', 'Projects', 'Articles', 'Contact'].map((link, index) => (
+                {[
+                  { name: 'Articles', href: '/articles' },
+                  { 
+                    name: 'Contact', 
+                    href: 'mailto:kedar.vartak22@vit.edu?subject=Project%20Inquiry&body=Hi%20Kedar,%0D%0A%0D%0AI%27d%20like%20to%20discuss%20a%20project%20with%20you.'
+                  }
+                ].map((link, index) => (
                   <motion.div key={index} whileHover={{ x: -8 }}>
                     <a 
-                      href={`#${link.toLowerCase()}`}
+                      href={link.href}
                       className="text-neutral-300 hover:text-white transition-colors duration-300"
                     >
-                      {link}
+                      {link.name}
                     </a>
                   </motion.div>
                 ))}
@@ -119,7 +125,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="text-neutral-400 text-sm"
           >
-            © {currentYear} Your Name. All rights reserved.
+            © {currentYear} Kedar Vartak. All rights reserved.
           </motion.div>
 
           <motion.button

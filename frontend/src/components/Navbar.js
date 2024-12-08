@@ -19,10 +19,11 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Work', href: '#work' },
     { name: 'Articles', href: '/articles' },
-    { name: 'Contact', href: '#contact' },
+    { 
+      name: 'Contact', 
+      href: 'mailto:kedar.vartak22@vit.edu?subject=Project%20Inquiry&body=Hi%20Kedar,%0D%0A%0D%0AI%27d%20like%20to%20discuss%20a%20project%20with%20you.'
+    },
   ];
 
   // Admin Switch Component
@@ -196,10 +197,10 @@ const Navbar = () => {
                   <div className="text-neutral-500 text-sm tracking-wide">
                     Get in touch
                     <a 
-                      href="mailto:your.email@example.com" 
+                      href="mailto:kedar.vartak22@vit.edu" 
                       className="block text-white hover:text-neutral-300 transition-colors duration-300 mt-2"
                     >
-                      your.email@example.com
+                      kedar.vartak22@vit.edu
                     </a>
                   </div>
                 </div>
