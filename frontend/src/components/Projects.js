@@ -130,11 +130,11 @@ const Projects = () => {
       type: "project"
     },
     {
-      title: "CASSY - Climate Action Support System",
-      description: "A web application that helps users manage their carbon footprint and make informed decisions to reduce their carbon emissions. The application uses the user's location to fetch the nearest carbon emission data and provides recommendations to the user.",
-      tags: ["React", "Node.js", "MongoDB", "Tailwind CSS", "Stripe"],
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-      github: "https://github.com/kedarvartak/Project-Cassy",
+      title: "POKECHAIN - Decentralized P-2-E Platform",
+      description: "PokeChain is a decentralized Pokemon training game built on the Ethereum blockchain. It combines the beloved Pokemon universe with blockchain technology, allowing players to own, train, and battle with their Pokemon as unique digital assets.",
+      tags: ["Node.js & Express", "Flask", "Redis and Celery Worker", "PostgreSQL", "Linea Blockchain (Ethereum Layer 2", "Ethers.js", "Solidity", "React", "Tailwind CSS", "Web3.js", "Unity", "Flutter"],
+      image: "https://1.bp.blogspot.com/-qaDNLJB1St4/YFDEuqq0aDI/AAAAAAAAJfo/wh7SJZc9vfAMkWk2Zr5aeon3qMZaF_piwCLcBGAsYHQ/s2048/pokemon.jpg",
+      github: "https://github.com/kedarvartak/PokeChain-Web3-Hackathon",
       live: "https://project2.com",
       type: "project"
     }

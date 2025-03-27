@@ -14,20 +14,21 @@ const timelineData = {
       institution: "Namo Rims Junior College, Pune",
       description: "Focus on Mathematics, Physics, and Chemistry"
     },
+    {
+      year: "-2020",
+      title: "10th - CBSE",
+      institution: "City International School, Pune",
+      description: "Focus on Mathematics, Science, Social Science, and English"
+    },
     // Add more academic milestones
   ],
   professional: [
     {
-      year: "2024",
-      title: "AI and Marketing Intern",
-      company: "Chitale Bandhu IT Sector",
-      description: "Vehicle routing problem and AI-based marketing strategies"
-    },
-    {
-      year: "2024",
-      title: "Web Developer Intern",
-      company: "Sangam India",
-      description: "Full-stack development using React, Tailwind CSS, Node.js, BootstrapCSS"
+      year: "2023-2025",
+      title: "Freelance Full Stack Developer",
+      company: "Full stack developer",
+      description: "I've worked with more than 10 clients and have a good amount of experience in full stack development. My clients include startups and small businesses."
+
     },
     // Add more professional milestones
   ]

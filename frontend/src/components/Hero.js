@@ -97,7 +97,7 @@ const Hero = () => {
             >
               <motion.a
                 whileHover={{ x: 4 }}
-                href="https://drive.google.com/file/d/1FLvdoXRFCFI3tZ9rrRqt91OltdThB6e_/view?usp=sharing"
+                href="https://drive.google.com/file/d/10cVvX1sBNIMSo-u-jkFrzLNfUaatEte6/view?usp=sharing"
                 className="group flex items-center text-white text-lg justify-center"
               >
                 View Work
